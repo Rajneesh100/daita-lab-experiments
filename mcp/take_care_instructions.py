@@ -1,0 +1,1 @@
+print("Take care of the following important things: 1. Eat well, 2. Stay hydrated, 3. Exercise regularly, 4. Get enough sleep, 5. Practice stress management.")

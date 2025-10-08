@@ -1,0 +1,16 @@
+
+
+python3 -m venv venv
+
+source venv/bin/activate
+
+deactivate
+
+
+-- tesseract ocr
+brew install tesseract
+brew install poppler
+
+
+-- easy ocr
+pip install easyocr

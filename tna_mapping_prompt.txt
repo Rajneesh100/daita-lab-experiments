@@ -1,0 +1,108 @@
+
+
+after app.py in tna which was a basic a api which ingested tna plan into the db
+
+
+great! it is working great app.py is able to save the new dashboard from /dashboard post api in given strecture of Dashboard. thanks !!
+
+
+now comes the hard part you see in xlsheets_dir i have a xlsheet which contains the actaul tna plan made by a user but it is not in very format of our defined Dashboard class so wanted to map columns in the xlsheet to to fields of this Dashboard, and xl sheet is also not very stright forward like column names header is also hirarical like on top there is stages and in next row there are sub step in those stages with and it's all wriiten for only human understanding so mapping one to one in hardcoded way is not easy so i wanted to build a frontend where user uploades his xl sheet and we load that xl sheet on scrren and we give option to tag each substep columns to a perticular stage item and then once they tag each column on ui then we can extract data, each line item can be uniquely defined by io,style, color the order_id for now just place the xlsheet name 
+so each tna plan can be identified by io, style, color and we need to put one entry for each tns plan so here is sequence of step that im imagining:
+
+1 first user uploads the xlsheet
+2 we openup that xlsheet on ui and user can tag each of columns with respective variable that we defined in our classes give show them all the available supported tag 
+3 once they tag all the columns we try to do a correctness check it is valid then user clicks entry then it push via api that is in app.py
+
+so let me. know any question you have before jumping to solution. use react for frontend, and create a new folder name tna frontend in parent directory of llm_games
+
+
+before going to answer the question also ask the user from which line actual data is filled so from that line you have to pick all the tna plans.
+there will be cases where one style has mutiple colours and each have their tna plan but insted of writing style and io value again and again , all the rows of io were combined for all the colours and let's say for any one io there is two style and each styles have let's say n and m different colors then io row will be combined as one row for n+m items and each styles row will be combined n and m rows and then after wards each have saperate tna plan that's how any tna can be identified by ( io, style and color) so user insted of writing them again and again they combine the column in xl sheet, so first we have to logically fill values so that we can simple pick and dump in db but show and original xl on ui so that user doesn't feel any differance and make sense
+
+
+in  tna plan sheet all the stages will be in increasing order of time. so once user has finalied the mapping you can give incremental ids to stages which will maintain order
+
+to map key identifier like io, style and color these tags can be mapped to column directly like if user assigns any column to io all it's values will be map to io. similarly for style and color
+
+
+so it's easy to mark the identifiers now comming to stages and items. 
+
+
+
+```
+VAP						
+SUPPLIER 		VAP SEND	 WASHING    TRANSPORT	REC	QTY	STATUS
+```
+
+so here VAP is on top column so intially i don't want to mess up thing now so now just focusing on the 2nd row which contains the items 
+
+so the idea is simple if user picks clicks on any header rows he gets these thing :
+
+only mandatory tag option is stage and without it it can't be taken for mapping
+
+when ever user clicks on any cell it pops up a small box nearby and show him a small box containing two option: stage & item (io, color , style will be also shown but for since it won't be used so i will not discuss about these in next past)
+
+upon clicking stage it will give name, start_date ,... options only name is mandatory
+for each cell clicked stage option must be filled atleast name field of stage
+
+upon clicking item it will give all options in item class.
+name must be filled user can either select the column name or fill any different name
+planned_date must be filled it should be mapped to the value in below row
+
+
+let's say it clicks VAP
+it getting mandatory option:
+
+ stage:
+  name: it's get option to add different name or keep the same column name. MUST (in later clicks what ever user have already added shoud appear in suggestions, suggest last 2 used distinct stage that will be enough)
+
+  start_date & deadline & expected_delivery_date, parameters, manager, top_manager, context : optional but show the tags if they want to add any info
+  item: optional if left empty means this entity is stage level entity
+
+optional
+
+ item: it can be left empty
+
+
+let's say it clicks on SUPPLIER
+
+	so it get's tag options:
+	stage: 
+	  name: let's say it selects the suggested VAP option or fills any new name whatever. MUST
+	  start_date & deadline & expected_delivery_date, parameters, manager, top_manager, context : optional 
+      parameters: Dict[str, str]  : here user can add a parameter name can be same as column name here (SUPPLIER) or user can fill anything 
+      as key and in value we will pick from data rows.
+
+    item: optional user won't fill anything here since it's satge level parameter 
+
+let's say it clicks on VAP SEND
+   
+   so it get's tag options:
+	stage: mandatory
+	  name: let's say it selects the suggested VAP option or fills any new name whatever. MUST
+      parameters: Dict[str, str]  : user won't do anything much here bcz it's item realted to deadlines  
+      start_date & deadline & expected_delivery_date, parameters, manager, top_manager, context  : optional, user  won't do anything but show the option
+
+    item:
+      since it is a deadline task user will add item here 
+      name  : it is a must field to add any item tag. name can be selected same as column name like here "VAP SEND" or user can fill anything 
+      planned_date : it is also a must field to fill this we will map values of this column from the data rows
+      other rest fields are optional 
+
+similarly for WASHING and transport
+
+
+so in this way we can map using user's input to our strecture schema
+
+answers for your questions:
+all stages must have atleast one item 
+io, color, and style field must be tagges 
+there won't be cases where two rows have same io, style and color
+
+create apis for uploading the xl sheet and write now just save it under /xlsump folder
+save column mapping 
+once these mapping are done by user either send this mapping to backend which will extract the data and push into the db ( i  think this is better since if large xl sheets can have lot's of data which will be difficult to send in one go if data extraction done on frontend ) or do this data extraction on frontend. do the data extraction on backend once user have mapped field 
+
+and if context is added in multiple places for any stage (like on VAP tagging one context added in stage class and and while tagging VAP SEND if in stage section some context is added ) just save a list of contexts in those cases where mutiple context is added in n number of place for satge and similarly for item( logically it won't happen but yeah follow the same strecture ) as well
+
+

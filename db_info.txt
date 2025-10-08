@@ -1,0 +1,12 @@
+user_name = parser
+password = parser123
+
+docker run --name postgres-parser -e POSTGRES_USER=parser -e POSTGRES_PASSWORD=parser123 -e POSTGRES_DB=parser -p 4000:5432 -d postgres
+docker exec -i postgres-parser psql -U parser -d parser < database_schema.sql
+
+
+docker tag llm_games-backend rajneesh2311/pdf-parser-frontend:latest
+docker tag llm_games-backend rajneesh2311/pdf-parser-backend:latest
+
+docker push rajneesh2311/pdf-parser-backend:latest  
+docker push rajneesh2311/pdf-parser-frontend:latest  

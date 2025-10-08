@@ -1,0 +1,106 @@
+
+
+curl -X POST "http://localhost:9901/dashboards" \
+-H "Content-Type: application/json" \
+-d '{
+  "name": "Order Tracking Dashboard",
+  "order_id": "ORD123",
+  "styles": ["st01", "st02"],
+  "stages": [],
+  "start_date": "2025-10-02",
+  "end_date": "2025-12-31",
+  "status": "ongoing",
+  "top_manager_contacts": ["boss@example.com"],
+  "original_pdf_urls": ["http://example.com/file.pdf"],
+  "context": [{"user": "rajneesh", "text": "Initial creation"}],
+  "created_by": "rajneesh"
+}'
+
+
+
+
+
+
+
+curl -X POST "http://localhost:9901/dashboards" \
+-H "Content-Type: application/json" \
+-d '{
+  "name": "Order Tracking Dashboard",
+  "order_id": "ORD456",
+  "styles": ["st01", "st02"],
+  "stages": [
+    {
+      "id": 0,
+      "name": "fabic order",
+      "items": [
+        {
+          "dependency_name": "Supplier",
+          "name": "Acme Supplies",
+          "start_date": "2025-10-01",
+          "end_date": "2025-10-05",
+          "actual_delivery_date": "2025-10-04",
+          "status": "completed",
+          "contact": "supplier@acme.com",
+          "context": [{"user": "rajneesh", "text": "Supplier confirmed delivery"}]
+        },
+        {
+          "dependency_name": "Transport",
+          "name": "Fast Logistics",
+          "start_date": "2025-10-02",
+          "end_date": "2025-10-06",
+          "status": "ongoing",
+          "contact": "logistics@fast.com"
+        }
+      ],
+      "start_date": "2025-10-01",
+      "deadline": "2025-10-06",
+      "expected_delivery_date": "2025-10-06",
+      "manager": "manager@example.com",
+      "top_manager": "ceo@example.com",
+      "context": [{"user": "rajneesh", "text": "Stage 0 started"}]
+    },
+    {
+      "id": 1,
+      "name": "cutting",
+      "items": [
+        {
+          "dependency_name": "Equipment",
+          "name": "Machinery Inc",
+          "start_date": "2025-10-07",
+          "end_date": "2025-10-12",
+          "status": "ongoing",
+          "contact": "support@machinery.com"
+        }
+      ],
+      "start_date": "2025-10-07",
+      "deadline": "2025-10-12",
+      "expected_delivery_date": "2025-10-12",
+      "manager": "manager2@example.com",
+      "top_manager": "ceo@example.com"
+    },
+    {
+      "id": 2,
+      "name":"Qc process",
+      "items": [
+        {
+          "dependency_name": "Quality Check",
+          "start_date": "2025-10-13",
+          "end_date": "2025-10-15",
+          "status": "pending"
+        }
+      ],
+      "start_date": "2025-10-13",
+      "deadline": "2025-10-15",
+      "expected_delivery_date": "2025-10-15",
+      "manager": "manager3@example.com",
+      "top_manager": "ceo@example.com"
+    }
+  ],
+  "start_date": "2025-10-01",
+  "end_date": "2025-10-15",
+  "status": "ongoing",
+  "top_manager_contacts": ["ceo@example.com"],
+  "original_pdf_urls": ["http://example.com/order.pdf"],
+  "context": [{"user": "rajneesh", "text": "Dashboard created"}],
+  "created_by": "rajneesh"
+}'

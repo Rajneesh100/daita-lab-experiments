@@ -1,0 +1,13 @@
+docker run --name mongodb-tna -p 27017:27017 -e MONGO_INITDB_ROOT_USERNAME=admin -e MONGO_INITDB_ROOT_PASSWORD=secret -d mongo
+
+
+# 2. Start Backend (Terminal 1)
+cd parser
+source parser/bin/activate
+
+cd tna
+uvicorn app:app --reload --port 8000
+
+# 3. Start Frontend (Terminal 2)
+cd tna_frontend
+npm start

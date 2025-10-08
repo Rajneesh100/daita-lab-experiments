@@ -1,0 +1,54 @@
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:15-alpine
+    container_name: pdf-parser-db-test
+    environment:
+      POSTGRES_USER: parser
+      POSTGRES_PASSWORD: parser123
+      POSTGRES_DB: parser
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./parser/database_schema.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - pdf-parser-network
+
+  # Backend Service (from Docker Hub)
+  backend:
+    image: rajneesh2311/pdf-parser-backend:latest
+    container_name: pdf-parser-backend-test
+    environment:
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: 5432
+      POSTGRES_USER: parser
+      POSTGRES_PASSWORD: parser123
+      POSTGRES_DB: parser
+      GEMINI_API_KEY: your key
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres
+    networks:
+      - pdf-parser-network
+    restart: unless-stopped
+
+  # Frontend Service (from Docker Hub)
+  frontend:
+    image: rajneesh2311/pdf-parser-frontend:latest
+    container_name: pdf-parser-frontend-test
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    networks:
+      - pdf-parser-network
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+
+networks:
+  pdf-parser-network:
+    driver: bridge

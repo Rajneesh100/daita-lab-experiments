@@ -1,0 +1,142 @@
+(venv) rajneesh.kumar@MQTT9DYDT4 mcp % python a14_fix_bug.py
+Order Email PDF Extractor - Only Downloads PDFs from Order Emails
+Found 5 emails in time range
+Processing email 1/5
+Found 5 URLs in email content
+Attempting to download from URL: https://drive.google.com/file/d/1Of-1Q8qWygK4TbThBLTxT66b6nGSHbjl/view?usp=drive_link
+Downloading content from: https://drive.google.com/file/d/1Of-1Q8qWygK4TbThBLTxT66b6nGSHbjl/view?usp=drive_link
+Converting Google Drive URL to direct download: https://drive.google.com/uc?export=download&id=1Of-1Q8qWygK4TbThBLTxT66b6nGSHbjl
+Successfully downloaded PDF from URL: Rajneesh_Kumar_IIT_Patna_CSE.pdf (137762 bytes) -> received_files/20250926_005453_url_Rajneesh_Kumar_IIT_Patna_CSE.pdf
+Attempting to download from URL: www.linkedin.com/in/rajneesh-kumar-5raj/
+Downloading content from: www.linkedin.com/in/rajneesh-kumar-5raj/
+Network error downloading www.linkedin.com/in/rajneesh-kumar-5raj/: Invalid URL 'www.linkedin.com/in/rajneesh-kumar-5raj/': No scheme supplied. Perhaps you meant https://www.linkedin.com/in/rajneesh-kumar-5raj/?
+Attempting to download from URL: https://www.linkedin.com/in/rajneesh-kumar-5raj/
+Downloading content from: https://www.linkedin.com/in/rajneesh-kumar-5raj/
+Skipping non-PDF content from URL: https://www.linkedin.com/in/rajneesh-kumar-5raj/ (Content-Type: text/html)
+Attempting to download from URL: https://leetcode.com/u/demon_code/
+Downloading content from: https://leetcode.com/u/demon_code/
+Skipping non-PDF content from URL: https://leetcode.com/u/demon_code/ (Content-Type: text/html; charset=utf-8)
+Attempting to download from URL: https://medium.com/@rajneesh.work123
+Downloading content from: https://medium.com/@rajneesh.work123
+Skipping non-PDF content from URL: https://medium.com/@rajneesh.work123 (Content-Type: text/html; charset=utf-8)
+Processing email 2/5
+Found 5 URLs in email content
+Attempting to download from URL: www.linkedin.com/in/rajneesh-kumar-5raj/
+Downloading content from: www.linkedin.com/in/rajneesh-kumar-5raj/
+Network error downloading www.linkedin.com/in/rajneesh-kumar-5raj/: Invalid URL 'www.linkedin.com/in/rajneesh-kumar-5raj/': No scheme supplied. Perhaps you meant https://www.linkedin.com/in/rajneesh-kumar-5raj/?
+Attempting to download from URL: https://www.linkedin.com/in/rajneesh-kumar-5raj/
+Downloading content from: https://www.linkedin.com/in/rajneesh-kumar-5raj/
+Skipping non-PDF content from URL: https://www.linkedin.com/in/rajneesh-kumar-5raj/ (Content-Type: text/html)
+Attempting to download from URL: https://leetcode.com/u/demon_code/
+Downloading content from: https://leetcode.com/u/demon_code/
+Skipping non-PDF content from URL: https://leetcode.com/u/demon_code/ (Content-Type: text/html; charset=utf-8)
+Attempting to download from URL: https://medium.com/@rajneesh.work123
+Downloading content from: https://medium.com/@rajneesh.work123
+Skipping non-PDF content from URL: https://medium.com/@rajneesh.work123 (Content-Type: text/html; charset=utf-8)
+Attempting to download from URL: https://github.com/Rajneesh-meesho/pdf-reader/blob/main/sample_pdfs/purchase-order_3.pdf
+Downloading content from: https://github.com/Rajneesh-meesho/pdf-reader/blob/main/sample_pdfs/purchase-order_3.pdf
+Converting GitHub URL to raw: https://raw.githubusercontent.com/Rajneesh-meesho/pdf-reader/main/sample_pdfs/purchase-order_3.pdf
+Successfully downloaded PDF from URL: purchase-order_3.pdf (258219 bytes) -> received_files/20250926_005503_url_purchase-order_3.pdf
+Processing email 3/5
+Found 0 URLs in email content
+Processing email 4/5
+Found 0 URLs in email content
+Processing email 5/5
+Downloaded PDF attachment: purchase-order.pdf -> received_files/20250926_005508_attachment_purchase-order.pdf
+Found 0 URLs in email content
+
+=== Verifying files in received_files ===
+Found 3 files:
+  20250926_005453_url_Rajneesh_Kumar_IIT_Patna_CSE.pdf
+    Size: 137,762 bytes
+    Type: File extension: .pdf
+    Path: /Users/rajneesh.kumar/Desktop/ai_chat/mcp/received_files/20250926_005453_url_Rajneesh_Kumar_IIT_Patna_CSE.pdf
+    ✅ File looks good
+
+  20250926_005503_url_purchase-order_3.pdf
+    Size: 258,219 bytes
+    Type: File extension: .pdf
+    Path: /Users/rajneesh.kumar/Desktop/ai_chat/mcp/received_files/20250926_005503_url_purchase-order_3.pdf
+    ✅ File looks good
+
+  20250926_005508_attachment_purchase-order.pdf
+    Size: 162,392 bytes
+    Type: File extension: .pdf
+    Path: /Users/rajneesh.kumar/Desktop/ai_chat/mcp/received_files/20250926_005508_attachment_purchase-order.pdf
+    ✅ File looks good
+
+┏━ Message ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃                                                                                                                ┃
+┃ [                                                                                                              ┃
+┃   {                                                                                                            ┃
+┃     "from": "Rajneesh Kumar <rajneesh.work123@gmail.com>",                                                     ┃
+┃     "to": "\"shareskillotpservice@gmail.com\" <shareskillotpservice@gmail.com>",                               ┃
+┃     "subject": "my resume",                                                                                    ┃
+┃     "date_time": "Thu, 25 Sep 2025 23:13:45 +0530",                                                            ┃
+┃     "content": "find my resume                                                                                 ┃
+┃ attached\r\nthanks\r\n\r\nhttps://drive.google.com/file/d/1Of-1Q8qWygK4TbThBLTxT66b6nGSHbjl/view?usp=drive_lin ┃
+┃ k\r\nRajneesh Kumar\r\nphone: +91 8875226534\r\nemail: rajneesh.work123@gmail.com\r\nLinkedin                  ┃
+┃ <https://www.linkedin.com/in/rajneesh-kumar-5raj/> | Meduim\r\n<https://medium.com/@rajneesh.work123> |        ┃
+┃ Leetcode\r\n<https://leetcode.com/u/demon_code/>",                                                             ┃
+┃     "attachments": [                                                                                           ┃
+┃       "/Users/rajneesh.kumar/Desktop/ai_chat/mcp/received_files/20250926_005453_url_Rajneesh_Kumar_IIT_Patna_C ┃
+┃ SE.pdf"                                                                                                        ┃
+┃     ]                                                                                                          ┃
+┃   },                                                                                                           ┃
+┃   {                                                                                                            ┃
+┃     "from": "Rajneesh Kumar <rajneesh.work123@gmail.com>",                                                     ┃
+┃     "to": "\"shareskillotpservice@gmail.com\" <shareskillotpservice@gmail.com>",                               ┃
+┃     "subject": "Runner Winter Fashion Order",                                                                  ┃
+┃     "date_time": "Thu, 25 Sep 2025 22:23:26 +0530",                                                            ┃
+┃     "content": "Hi Ramesh,\r\n\r\nWe are please to place order for out winter sports bear at your              ┃
+┃ firm,\r\nlooking forward to making long terms business with you,\r\nThanks please find all the relevent        ┃
+┃ details in attached                                                                                            ┃
+┃ pdf:\r\n\r\nhttps://github.com/Rajneesh-meesho/pdf-reader/blob/main/sample_pdfs/purchase-order_3.pdf\r\n\r\nRa ┃
+┃ jneesh Kumar\r\nphone: +91 8875226534\r\nemail: rajneesh.work123@gmail.com\r\nLinkedin                         ┃
+┃ <https://www.linkedin.com/in/rajneesh-kumar-5raj/> | Meduim\r\n<https://medium.com/@rajneesh.work123> |        ┃
+┃ Leetcode\r\n<https://leetcode.com/u/demon_code/>",                                                             ┃
+┃     "attachments": [                                                                                           ┃
+┃       "/Users/rajneesh.kumar/Desktop/ai_chat/mcp/received_files/20250926_005503_url_purchase-order_3.pdf"      ┃
+┃     ]                                                                                                          ┃
+┃   },                                                                                                           ┃
+┃   {                                                                                                            ┃
+┃     "from": "shareskillotpservice@gmail.com",                                                                  ┃
+┃     "to": "Unknown",                                                                                           ┃
+┃     "subject": "No Subject",                                                                                   ┃
+┃     "date_time": "Thu, 25 Sep 2025 09:45:33 -0700",                                                            ┃
+┃     "content": "We will complete the order in 3 months. Thank you for your patience.",                         ┃
+┃     "attachments": []                                                                                          ┃
+┃   },                                                                                                           ┃
+┃   {                                                                                                            ┃
+┃     "from": "shareskillotpservice@gmail.com",                                                                  ┃
+┃     "to": "Unknown",                                                                                           ┃
+┃     "subject": "No Subject",                                                                                   ┃
+┃     "date_time": "Thu, 25 Sep 2025 07:54:35 +0000",                                                            ┃
+┃     "content": "Thankyou for your order",                                                                      ┃
+┃     "attachments": []                                                                                          ┃
+┃   },                                                                                                           ┃
+┃   {                                                                                                            ┃
+┃     "from": "Rajneesh Kumar <kumarrajneesh79258@gmail.com>",                                                   ┃
+┃     "to": "\"shareskillotpservice@gmail.com\" <shareskillotpservice@gmail.com>",                               ┃
+┃     "subject": "Puma order book",                                                                              ┃
+┃     "date_time": "Thu, 25 Sep 2025 12:17:19 +0530",                                                            ┃
+┃     "content": "Hi compass tex,\r\nWe are pleased to inform you that we are placing order for our              ┃
+┃ winter\r\nclothing fashion segment,\r\nPlease find the attached PDF for detailed information.\r\n\r\nThanks &  ┃
+┃ Regards,\r\nRajneesh",                                                                                         ┃
+┃     "attachments": [                                                                                           ┃
+┃       "/Users/rajneesh.kumar/Desktop/ai_chat/mcp/received_files/20250926_005508_attachment_purchase-order.pdf" ┃
+┃     ]                                                                                                          ┃
+┃   }                                                                                                            ┃
+┃ ]                                                                                                              ┃
+┃                                                                                                                ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+┏━ Response (3.8s) ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃                                                                                                                ┃
+┃ [                                                                                                              ┃
+┃   "/Users/rajneesh.kumar/Desktop/ai_chat/mcp/received_files/20250926_005503_url_purchase-order_3.pdf",         ┃
+┃   "/Users/rajneesh.kumar/Desktop/ai_chat/mcp/received_files/20250926_005508_attachment_purchase-order.pdf"     ┃
+┃ ]                                                                                                              ┃
+┃                                                                                                                ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+None
+(venv) rajneesh.kumar@MQTT9DYDT4 mcp % 

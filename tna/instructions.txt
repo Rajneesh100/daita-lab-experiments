@@ -1,0 +1,329 @@
+rajneesh.kumar@MQTT9DYDT4 ~ % docker exec -it my-mongo mongosh -u admin -p secret
+
+
+
+
+
+rajneesh.kumar@MQTT9DYDT4 ~ % docker inspect my-mongo | grep MONGO_INITDB
+
+                "MONGO_INITDB_ROOT_USERNAME=admin",
+                "MONGO_INITDB_ROOT_PASSWORD=secret",
+
+
+
+
+rajneesh.kumar@MQTT9DYDT4 ~ % docker exec -it my-mongo mongosh -u admin -p secret --authenticationDatabase admin
+
+Current Mongosh Log ID:	68df6577b56223dba84f87fd
+Connecting to:		mongodb://<credentials>@127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&authSource=admin&appName=mongosh+2.5.8
+Using MongoDB:		7.0.25
+Using Mongosh:		2.5.8
+
+For mongosh info see: https://www.mongodb.com/docs/mongodb-shell/
+
+------
+   The server generated these startup warnings when booting
+   2025-10-03T05:10:14.075+00:00: Using the XFS filesystem is strongly recommended with the WiredTiger storage engine. See http://dochub.mongodb.org/core/prodnotes-filesystem
+   2025-10-03T05:10:14.437+00:00: For customers running MongoDB 7.0, we suggest changing the contents of the following sysfsFile
+   2025-10-03T05:10:14.437+00:00: vm.max_map_count is too low
+------
+
+
+
+
+test> show dbs
+admin        100.00 KiB
+config        60.00 KiB
+local         72.00 KiB
+tracking_db   40.00 KiB
+
+
+
+test> use tracking_db
+
+switched to db tracking_db
+tracking_db> show collections;
+dashboards
+
+
+
+
+tracking_db> db.dashboards.find()
+... 
+[
+  {
+    _id: ObjectId('68df60fc543c2eda86b5fe9a'),
+    name: 'Order Tracking Dashboard',
+    order_id: 'ORD123',
+    styles: [ 'st01', 'st02' ],
+    stages: [],
+    start_date: '2025-10-02',
+    end_date: '2025-12-31',
+    status: 'ongoing',
+    top_manager_contacts: [ 'boss@example.com' ],
+    original_pdf_urls: [ 'http://example.com/file.pdf' ],
+    context: [
+      {
+        timestamp: ISODate('2025-10-03T05:37:00.712Z'),
+        user: 'rajneesh',
+        text: 'Initial creation'
+      }
+    ],
+    created_by: 'rajneesh'
+  }
+]
+
+# nice formatting
+tracking_db> db.dashboards.find().pretty()
+... 
+[
+  {
+    _id: ObjectId('68df60fc543c2eda86b5fe9a'),
+    name: 'Order Tracking Dashboard',
+    order_id: 'ORD123',
+    styles: [ 'st01', 'st02' ],
+    stages: [],
+    start_date: '2025-10-02',
+    end_date: '2025-12-31',
+    status: 'ongoing',
+    top_manager_contacts: [ 'boss@example.com' ],
+    original_pdf_urls: [ 'http://example.com/file.pdf' ],
+    context: [
+      {
+        timestamp: ISODate('2025-10-03T05:37:00.712Z'),
+        user: 'rajneesh',
+        text: 'Initial creation'
+      }
+    ],
+    created_by: 'rajneesh'
+  }
+]
+tracking_db> 
+
+
+
+
+
+#searcg by params
+
+tracking_db> db.dashboards.findOne({ order_id: "ORD123" })
+... 
+{
+  _id: ObjectId('68df60fc543c2eda86b5fe9a'),
+  name: 'Order Tracking Dashboard',
+  order_id: 'ORD123',
+  styles: [ 'st01', 'st02' ],
+  stages: [],
+  start_date: '2025-10-02',
+  end_date: '2025-12-31',
+  status: 'ongoing',
+  top_manager_contacts: [ 'boss@example.com' ],
+  original_pdf_urls: [ 'http://example.com/file.pdf' ],
+  context: [
+    {
+      timestamp: ISODate('2025-10-03T05:37:00.712Z'),
+      user: 'rajneesh',
+      text: 'Initial creation'
+    }
+  ],
+  created_by: 'rajneesh'
+}
+
+
+
+# count
+tracking_db> db.dashboards.countDocuments()
+... 
+1
+tracking_db> 
+
+
+
+tracking_db> db.dashboards.find().pretty()
+[
+  {
+    _id: ObjectId('68df60fc543c2eda86b5fe9a'),
+    name: 'Order Tracking Dashboard',
+    order_id: 'ORD123',
+    styles: [ 'st01', 'st02' ],
+    stages: [],
+    start_date: '2025-10-02',
+    end_date: '2025-12-31',
+    status: 'ongoing',
+    top_manager_contacts: [ 'boss@example.com' ],
+    original_pdf_urls: [ 'http://example.com/file.pdf' ],
+    context: [
+      {
+        timestamp: ISODate('2025-10-03T05:37:00.712Z'),
+        user: 'rajneesh',
+        text: 'Initial creation'
+      }
+    ],
+    created_by: 'rajneesh'
+  },
+  {
+    _id: ObjectId('68df67495afe9aba136acfb0'),
+    name: 'Order Tracking Dashboard',
+    order_id: 'ORD456',
+    styles: [ 'st01', 'st02' ],
+    stages: [
+      {
+        id: 0,
+        name: 'fabic order',
+        items: [
+          {
+            dependency_name: 'Supplier',
+            name: 'Acme Supplies',
+            start_date: '2025-10-01',
+            end_date: '2025-10-05',
+            actual_delivery_date: '2025-10-04',
+            status: 'completed',
+            contact: 'supplier@acme.com',
+            context: [
+              {
+                timestamp: ISODate('2025-10-03T06:03:53.441Z'),
+                user: 'rajneesh',
+                text: 'Supplier confirmed delivery'
+              }
+            ]
+          },
+          {
+            dependency_name: 'Transport',
+            name: 'Fast Logistics',
+            start_date: '2025-10-02',
+            end_date: '2025-10-06',
+            actual_delivery_date: null,
+            status: 'ongoing',
+            contact: 'logistics@fast.com',
+            context: []
+          }
+        ],
+        start_date: '2025-10-01',
+        deadline: '2025-10-06',
+        expected_delivery_date: '2025-10-06',
+        manager: 'manager@example.com',
+        top_manager: 'ceo@example.com',
+        context: [
+          {
+            timestamp: ISODate('2025-10-03T06:03:53.441Z'),
+            user: 'rajneesh',
+            text: 'Stage 0 started'
+          }
+        ]
+      },
+      {
+        id: 1,
+        name: 'cutting',
+        items: [
+          {
+            dependency_name: 'Equipment',
+            name: 'Machinery Inc',
+            start_date: '2025-10-07',
+            end_date: '2025-10-12',
+            actual_delivery_date: null,
+            status: 'ongoing',
+            contact: 'support@machinery.com',
+            context: []
+          }
+        ],
+        start_date: '2025-10-07',
+        deadline: '2025-10-12',
+        expected_delivery_date: '2025-10-12',
+        manager: 'manager2@example.com',
+        top_manager: 'ceo@example.com',
+        context: []
+      },
+      {
+        id: 2,
+        name: 'Qc process',
+        items: [
+          {
+            dependency_name: 'Quality Check',
+            name: null,
+            start_date: '2025-10-13',
+            end_date: '2025-10-15',
+            actual_delivery_date: null,
+            status: 'pending',
+            contact: null,
+            context: []
+          }
+        ],
+        start_date: '2025-10-13',
+        deadline: '2025-10-15',
+        expected_delivery_date: '2025-10-15',
+        manager: 'manager3@example.com',
+        top_manager: 'ceo@example.com',
+        context: []
+      }
+    ],
+    start_date: '2025-10-01',
+    end_date: '2025-10-15',
+    status: 'ongoing',
+    top_manager_contacts: [ 'ceo@example.com' ],
+    original_pdf_urls: [ 'http://example.com/order.pdf' ],
+    context: [
+      {
+        timestamp: ISODate('2025-10-03T06:03:53.441Z'),
+        user: 'rajneesh',
+        text: 'Dashboard created'
+      }
+    ],
+    created_by: 'rajneesh'
+  }
+]
+tracking_db> 
+
+
+
+----------------------------------
+docker exec -it mongodb-tna mongosh -u admin -p secret
+
+// Switch to the tracking database
+use tracking_db
+
+// View all dashboards (pretty formatted)
+db.dashboards.find().pretty()
+
+// Count total dashboards
+db.dashboards.count()
+
+// View specific dashboard by order_id
+db.dashboards.findOne({"order_id": "your_filename.xlsx"})
+
+// View only dashboard names and order_ids
+db.dashboards.find({}, {name: 1, order_id: 1, _id: 0})
+
+// View TNA items count for each dashboard
+db.dashboards.find({}, {name: 1, order_id: 1, tna_items: {$size: "$tna_items"}})
+
+// View column mappings
+db.column_mappings.find().pretty()
+
+// View latest dashboard
+db.dashboards.find().sort({_id: -1}).limit(1).pretty()
+
+// View specific TNA item by io, style, color
+db.dashboards.findOne(
+  {"tna_items.io": "your_io_value"},
+  {"tna_items.$": 1}
+)
+
+// Exit MongoDB shell
+exit
+
+
+
+use tracking_db
+
+// Clear all dashboards
+db.dashboards.deleteMany({})
+
+// Clear all mappings
+db.column_mappings.deleteMany({})
+
+// Verify they're empty
+db.dashboards.count()
+db.column_mappings.count()
+
+// Exit
+exit
